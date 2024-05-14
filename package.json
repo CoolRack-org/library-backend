@@ -9,6 +9,7 @@
   "author": "",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
+    "@prisma/client": "^5.14.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "prisma": "^5.14.0"
