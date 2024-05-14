@@ -4,6 +4,7 @@
   "description": "Library backend for CoolRack",
   "main": "src/index.ts",
   "scripts": {
+    "start:dev": "npx ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
