@@ -1,0 +1,184 @@
+openapi: 3.0.3
+info:
+  title: CoolRack library backend
+  description: |-
+    This contains info about the CoolRack library backend API endpoints.
+  version: 1.0.0
+tags:
+  - name: Books
+    description: Endpoints to manage books and book series
+paths:
+  /books:
+    get:
+      tags:
+        - Books
+      summary: Get all books
+      description: Gets all the books in the library
+      operationId: getAllBooks
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Book"
+    post:
+      tags:
+        - Books
+      summary: Add a new book to the library
+      description: Add a new book to the library. Requires admin privileges.
+      operationId: postBook
+      requestBody:
+        description: Add a new book to the library
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Book"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+  /books/{id}:
+    get:
+      tags:
+        - Books
+      summary: Find a book by ID
+      description: Find a book by its ID
+      operationId: getBookById
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the book to find
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book"
+  /books/series:
+    get:
+      tags:
+        - Books
+      summary: Get all book series
+      description: Gets all the book series in the library
+      operationId: getAllSeries
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BookSeries"
+    post:
+      tags:
+        - Books
+      summary: Add a new book series to the library
+      description: Add a new book series to the library. Requires admin privileges.
+      operationId: postSeries
+      requestBody:
+        description: Add a new book series to the library
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookSeries"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+  /books/series/{id}:
+    get:
+      tags:
+        - Books
+      summary: Find a book series by ID
+      description: Find a book series by its ID
+      operationId: getSeriesById
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the book series to find
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BookSeries"
+  /books/series{id}/books:
+    get:
+      tags:
+        - Books
+      summary: Get all books in a series
+      description: Get all books in a series by its ID
+      operationId: getBooksInSeries
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the book series to find books for
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Book"
+
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 10
+        author:
+          type: string
+          example: F. Scott Fitzgerald
+        torrentHash:
+          type: string
+          example: 12345
+        publicationDate:
+          type: string
+          example: 1925
+        pages:
+          type: integer
+          example: 180
+        title:
+          type: string
+          example: The Great Gatsby
+        description:
+          type: string
+          example: A novel by F. Scott Fitzgerald
+        sinopsis:
+          type: string
+          example: A novel by F. Scott Fitzgerald
+        seriesId:
+          type: integer
+          example: 1
+    BookSeries:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Harry Potter
+        description:
+          type: string
+          example: A series of books by J.K. Rowling

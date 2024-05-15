@@ -39,7 +39,7 @@ router.get("/series", async (req: Request, res: Response) => {
 });
 
 // Get a series by id
-router.get("/series//:id([0-9]+)", async (req: Request, res: Response) => {
+router.get("/series/:id([0-9]+)", async (req: Request, res: Response) => {
   const { id } = req.params;
   const series = await prisma.bookSeries.findUnique({
     where: {
