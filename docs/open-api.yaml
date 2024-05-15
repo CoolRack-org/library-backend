@@ -3,11 +3,44 @@ info:
   title: CoolRack library backend
   description: |-
     This contains info about the CoolRack library backend API endpoints.
+    Some endpoints may require admin privileges. To access these endpoints, send a request with an admin JWT token in the Authorization header.
+    You can generate an admin JWT token by sending a POST request to the /auth/login endpoint with the admin credential.
   version: 1.0.0
 tags:
+  - name: Auth
+    description: Endpoints to manage user authentication
   - name: Books
     description: Endpoints to manage books and book series
 paths:
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login to the CoolRack library backend
+      description: Login to the CoolRack library backend
+      operationId: login
+      requestBody:
+        description: Login to the CoolRack library backend
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  example: adminPassword
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
   /books:
     get:
       tags:
