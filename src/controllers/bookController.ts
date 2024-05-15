@@ -32,6 +32,19 @@ router.post("/", authenticateToken, async (req: Request, res: Response) => {
   res.json(book);
 });
 
+// Update a book by id
+router.put("/:id([0-9]+)", authenticateToken, async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { book } = req.body;
+  const updatedBook = await prisma.book.update({
+    where: {
+      id: parseInt(id),
+    },
+    data: book,
+  });
+  res.json(updatedBook);
+});
+
 // Delete a book by id
 router.delete("/:id([0-9]+)", authenticateToken, async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -78,6 +91,23 @@ router.post(
   async (req: Request, res: Response) => {
     const { series } = req.body;
     res.json(series);
+  }
+);
+
+// Update a series by id
+router.put(
+  "/series/:id([0-9]+)",
+  authenticateToken,
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { series } = req.body;
+    const updatedSeries = await prisma.bookSeries.update({
+      where: {
+        id: parseInt(id),
+      },
+      data: series,
+    });
+    res.json(updatedSeries);
   }
 );
 

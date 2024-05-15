@@ -94,6 +94,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Book"
+    put:
+      tags:
+        - Books
+      summary: Update a book by ID
+      description: Update a book by its ID. Requires admin privileges.
+      operationId: updateBookById
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the book to update
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Update a book by its ID
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Book"
+        required: true
+      responses:
+        "200":
+          description: successful operation
     delete:
       tags:
         - Books
@@ -163,6 +186,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/BookSeries"
+    put:
+      tags:
+        - Books
+      summary: Update a book series by ID
+      description: Update a book series by its ID. Requires admin privileges.
+      operationId: updateSeriesById
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the book series to update
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Update a book series by its ID
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookSeries"
+        required: true
+      responses:
+        "200":
+          description: successful operation
     delete:
       tags:
         - Books
