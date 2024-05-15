@@ -94,6 +94,22 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Book"
+    delete:
+      tags:
+        - Books
+      summary: Delete a book by ID
+      description: Delete a book by its ID. Requires admin privileges.
+      operationId: deleteBookById
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the book to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: successful operation
   /books/series:
     get:
       tags:
@@ -147,6 +163,22 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/BookSeries"
+    delete:
+      tags:
+        - Books
+      summary: Delete a book series by ID
+      description: Delete a book series by its ID. Requires admin privileges.
+      operationId: deleteSeriesById
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the book series to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: successful operation
   /books/series{id}/books:
     get:
       tags:
@@ -203,6 +235,9 @@ components:
         seriesId:
           type: integer
           example: 1
+        language:
+          type: string
+          example: en
     BookSeries:
       type: object
       properties:

@@ -32,6 +32,17 @@ router.post("/", authenticateToken, async (req: Request, res: Response) => {
   res.json(book);
 });
 
+// Delete a book by id
+router.delete("/:id([0-9]+)", authenticateToken, async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const book = await prisma.book.delete({
+    where: {
+      id: parseInt(id),
+    },
+  });
+  res.json(book);
+});
+
 // Get all series
 router.get("/series", async (req: Request, res: Response) => {
   const series = await prisma.bookSeries.findMany();
@@ -66,6 +77,21 @@ router.post(
   authenticateToken,
   async (req: Request, res: Response) => {
     const { series } = req.body;
+    res.json(series);
+  }
+);
+
+// Delete a series by id
+router.delete(
+  "/series/:id([0-9]+)",
+  authenticateToken,
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const series = await prisma.bookSeries.delete({
+      where: {
+        id: parseInt(id),
+      },
+    });
     res.json(series);
   }
 );
