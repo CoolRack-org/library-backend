@@ -3,6 +3,8 @@
 
 import express, { Express } from "express";
 import dotenv from "dotenv";
+
+// Import body-parser
 import bodyParser from 'body-parser';
 
 // Require the controllers
