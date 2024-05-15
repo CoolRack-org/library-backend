@@ -13,13 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Language {
-  id   Int    @id @default(autoincrement())
-  name String
-  shortCode String
-  books Book[]
-}
-
 model Book {
   id              Int      @id @default(autoincrement())
   author          String
@@ -31,8 +24,7 @@ model Book {
   sinopsis        String
   seriesId        Int
   series          BookSeries @relation(fields: [seriesId], references: [id])
-  languageId      Int
-  language        Language   @relation(fields: [languageId], references: [id])
+  language      String
 }
 
 model BookSeries {
