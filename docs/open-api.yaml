@@ -284,6 +284,9 @@ components:
         language:
           type: string
           example: en
+        coverBase64:
+          type: string
+          example: base64
     BookSeries:
       type: object
       properties:

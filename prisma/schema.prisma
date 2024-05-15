@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Book {
-  id              Int      @id @default(autoincrement())
+  id              Int        @id @default(autoincrement())
   author          String
   torrentHash     String
   publicationDate DateTime
@@ -24,12 +24,13 @@ model Book {
   sinopsis        String
   seriesId        Int
   series          BookSeries @relation(fields: [seriesId], references: [id])
-  language      String
+  language        String
+  coverBase64     String
 }
 
 model BookSeries {
-  id   Int    @id @default(autoincrement())
-  name String
+  id          Int    @id @default(autoincrement())
+  name        String
   description String
-  books Book[]
+  books       Book[]
 }
