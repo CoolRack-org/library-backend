@@ -225,7 +225,7 @@ paths:
       responses:
         "200":
           description: successful operation
-  /books/series{id}/books:
+  /books/series/{id}/books:
     get:
       tags:
         - Books
