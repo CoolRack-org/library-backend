@@ -22,4 +22,13 @@ model Book {
   title           String
   description     String
   sinopsis        String
+  seriesId        Int
+  series          BookSeries @relation(fields: [seriesId], references: [id])
+}
+
+model BookSeries {
+  id   Int    @id @default(autoincrement())
+  name String
+  description String
+  books Book[]
 }

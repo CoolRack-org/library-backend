@@ -6,6 +6,9 @@ const router = express.Router();
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
+// Import token validator
+import { authenticateToken } from "../logic/tokenValidator";
+
 // Get all books
 router.get("/", async (req: Request, res: Response) => {
   const books = await prisma.book.findMany();
@@ -24,7 +27,7 @@ router.get("/:id", async (req: Request, res: Response) => {
 });
 
 // Create a book
-router.post("/", async (req: Request, res: Response) => {
+router.post("/", authenticateToken, async (req: Request, res: Response) => {
   const { book } = req.body;
   res.json(book);
 });
